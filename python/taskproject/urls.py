@@ -16,11 +16,10 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    #url(r'^delete$', 'taskapp.views.deleteTask'),
+	
     url(r'^$', 'taskapp.views.index'),
     url(r'^delete/(?P<taskId>.+)', 'taskapp.views.deleteTask'),
     url(r'^complete/(?P<taskId>.+)/(?P<isComplete>.+)', 'taskapp.views.markComplete'),
-    #url(r'^complete$', 'taskapp.views.markComplete'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
