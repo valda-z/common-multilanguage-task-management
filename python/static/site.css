@@ -1,0 +1,156 @@
+﻿body {
+    background-color: #fff;
+    color: #1b1b1b;
+    font-size: 12px;
+    font-family: "Segoe UI",Verdana,Helvetica,Sans-Serif;
+    margin: 0 auto;
+    padding: 0 10px;
+    width: 940px;
+}
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+#main-body {
+    float: left;
+    margin-top: 36px;
+    width: 600px;
+}
+.widget {
+    float: right;
+    width: 280px;
+    margin-left: 60px;
+}
+img {
+    border:0;
+}
+.clear {
+    clear: both;
+}
+h1, h2, h3,
+h4, h5, h6 {
+    font-family: Segoe UI Light, Segoe UI,Tahoma,Arial,Verdana,sans-serif;
+    color: #1B1B1B;
+    font-weight: lighter;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-weight: 100;
+}
+h1 {
+    font-size: 36px;
+    margin: 20px 0;
+}
+h2 {
+    font-family: "Segoe UI",Verdana,Helvetica,Sans-Serif;
+    font-weight:normal;
+    font-size:18px;
+    margin:0;
+}
+table {
+    border-collapse:collapse;
+}
+    table tr td img {
+        display:block;
+        margin: 0 auto;
+    }
+th,td {
+    padding-left:15px;
+    line-height: 18px;
+    text-align: left;
+}
+    td:first-child, th:first-child {
+        padding-left:0;
+    }
+    th.small {
+        min-width:80px;
+    }
+    th.collapse {
+        width:auto;
+    }
+    th.align-center {
+        text-align:center;
+    }
+    th.name, th.category {
+        width:50%;
+    }
+thead {
+    font-family: "Segoe UI Semibold";
+    font-weight: lighter;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: left;
+    border-bottom:#c4c4c4;
+}
+    thead tr th {
+        border-bottom: 2px solid #C1C1C1;
+    }
+tbody tr {
+    border-bottom:1px solid #eaeaea;
+}
+    tbody tr:hover {
+        background-color:#e8f4df;
+    }
+div.add-container {
+    border-left: 2px solid #77bb44;
+    padding: 18px 18px 18px 30px;
+    background-color:#E6E7E9;
+    margin-top: 40px;
+}
+label {
+    display:block;
+    padding-top:10px;
+    font-weight: lighter;
+    text-transform: uppercase;
+    font-size: 11px;
+    text-align: left;
+}
+input {
+    width:226px;
+    margin:0;
+    line-height: 22px;
+    padding: 2px;
+    border:1px solid #c4c4c4;
+    height:22px;
+    font-family: "Segoe UI",Verdana,Helvetica,Sans-Serif;
+}
+input:focus, textarea:focus, select:focus, select:hover{
+    outline: 0;
+    outline-style:none;
+    outline-width:0;
+    }
+input:focus, textarea:focus {
+    border:1px solid #77bb44;
+}
+    input.calendar {
+    background: url(images/icon-calendar.png) no-repeat 102px 3px #fff;
+    cursor: pointer;
+    }
+.small {
+    width:120px;
+}
+span.image-name {
+    line-height:30px;
+}
+.create, .upload {
+    text-align: center;
+    font-family: "Segoe UI",Verdana,Helvetica,Sans-Serif;
+    cursor:pointer;
+    text-decoration:none;
+    color:#fff;
+    line-height:28px; 
+    text-transform:lowercase;
+    border:0;
+    width:104px;
+    padding: 0 11px;
+}
+.create{
+    display: block;
+    background-color:#ba141a;
+    margin-top:20px;
+    }
+.upload{
+    display: inline-block;
+    background-color:#77bb44;
+    margin-top:10px;
+    margin-right: 10px;
+    }
