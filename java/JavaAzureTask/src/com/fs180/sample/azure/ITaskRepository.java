@@ -11,7 +11,7 @@ public interface ITaskRepository {
 	
 	public void Add(TaskEntity task) throws InvalidKeyException, URISyntaxException, StorageException;
 	
-	public void SetComplete(String taskId, Boolean status);
+	public void SetComplete(String taskId, boolean status);
 	
 	public void Delete(String taskId);
 }

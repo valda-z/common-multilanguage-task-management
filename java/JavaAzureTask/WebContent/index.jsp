@@ -7,14 +7,14 @@
 <head>
     <meta charset="utf-8" />
     <title>Azure Java Task List</title>
-    <link href="/site.css" rel="stylesheet" type="text/css" />
+    <link href="site.css" rel="stylesheet" type="text/css" />
 
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.js" ></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.js"></script>
 
-    <link href="/css/lightbox.css" rel="stylesheet" />
-    <script src="/js/lightbox.js"></script>
+    <link href="css/lightbox.css" rel="stylesheet" />
+    <script src="js/lightbox.js"></script>
 
     <script>
         $(function()
@@ -82,9 +82,9 @@
                     <td><%=entity.getDate() %></td>
                     <td>
                     <%if (entity.getComplete()) { %>
-                        <a href="/Task?complete=<%=entity.getRowKey()%>&val=false"><img src="/images/checked.png" alt="complete" title="complete" /></a>
+                        <a href="Task?complete=<%=entity.getRowKey()%>&val=false"><img src="images/checked.png" alt="complete" title="complete" /></a>
                     <%} else { %>
-                    	<a href="/Task?complete=<%=entity.getRowKey()%>&val=true"><img src="/images/unchecked.png" alt="incomplete" title="incomplete" /></a>
+                    	<a href="Task?complete=<%=entity.getRowKey()%>&val=true"><img src="images/unchecked.png" alt="incomplete" title="incomplete" /></a>
                     <%} %>
                     </td>
                     <td class="align-center">
@@ -119,7 +119,7 @@
 	    </form>
     </div>
     <footer><a href="#" target="_blank">View Project</a>
-        <img src="/images/lang-java.png" alt="language icon" title="language icon" />
+        <img src="images/lang-java.png" alt="language icon" title="language icon" />
     </footer>
 </div>
 </body>
