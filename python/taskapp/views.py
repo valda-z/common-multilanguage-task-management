@@ -1,6 +1,7 @@
 # Create your views here.
 import time
 import uuid
+from azure.servicebus import Message, ServiceBusService
 from django.shortcuts import *
 from azure.storage import *
 from taskproject.settings import *
@@ -32,6 +33,7 @@ def index(request): #Define our function, accept a request
             task.Image = ''
 
         table_service.insert_entity('tasks', task)
+        sendMessage('add', task.Name)
 
 
     #Get the full list of tasks and render the view
@@ -52,6 +54,7 @@ def deleteTask(request, taskId):
 
     #Delete the Task from table storage
     table_service.delete_entity('tasks', 'p1', taskId)
+    sendMessage('delete', task.Name)
 
     #Delete Attachment if there is one associated with the task
     if hasattr(task, 'Image') and task.Image != '':
@@ -72,3 +75,13 @@ def markComplete(request, taskId, isComplete):
     task.Complete = (isComplete == 'True' or isComplete == 'true');
     table_service.update_entity('tasks', 'p1', taskId, task)
     return redirect('taskapp.views.index')
+
+def sendMessage(action, message):
+    #If Service bus feature is disabled just return
+    if not SB_ENABLED:
+        return
+
+    msg = Message(message, custom_properties={'sample':'python', 'action':action})
+    sb = ServiceBusService(service_namespace=SB_NAMESPACE, account_key=SB_KEY, issuer=SB_ISSUER)
+    sb.send_topic_message(SB_TOPIC, msg)
+

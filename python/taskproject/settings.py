@@ -21,14 +21,22 @@ DATABASES = {
     }
 }
 
-#Azure Storage Account Credentials
-STORAGE_ACCOUNT_NAME = ''
-STORAGE_ACCOUNT_KEY = ''
-
+#Azure Storage Account Settings
+#    We could simply read set the environment variables here instead of defining methods
+#    but this allows us to easily change them at run time in the sample without having to recycle the application
+STORAGE_ACCOUNT_NAME = os.getenv('STORAGE_ACCOUNT_NAME','')
+STORAGE_ACCOUNT_KEY = os.getenv('STORAGE_ACCOUNT_KEY','')
 TASK_TABLE = 'tasks'
 TASK_PARTITION_KEY = 'p1'
 BLOB_ATTACHMENT_CONTAINER = 'images'
 BLOB_ATTACHMENT_PATH = 'https://' + STORAGE_ACCOUNT_NAME + '.blob.core.windows.net/' + BLOB_ATTACHMENT_CONTAINER + '/'
+
+#Azure Service Bus Settings
+SB_ENABLED = True
+SB_NAMESPACE = os.getenv('SB_NAMESPACE','invader')
+SB_ISSUER = os.getenv('SB_ISSUER','owner')
+SB_KEY = os.getenv('SB_KEY','your service bus key here')
+SB_TOPIC = os.getenv('SB_TOPIC','tasks')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
