@@ -1,0 +1,13 @@
+{
+    "STORAGE_NAME": "",
+    "STORAGE_KEY": "",
+    "PARTITION_KEY": "p1",
+    "TABLE_NAME": "tasks",
+    "BLOB_CONTAINER":"images",
+    "STORAGE_PROVIDER": "azure",
+    "CAS_HOSTS": "",
+    "CAS_KS_NAME": "tasks",
+    "SB_ENABLED": "false",
+    "SB_CONNECTION_STRING": "",
+    "SB_TOPIC": "tasks"
+}
