@@ -24,7 +24,7 @@ public class TaskManager {
 	
 	private static CloudBlobClient getBlobClient() throws InvalidKeyException, URISyntaxException
 	{
-		storageConnectionString = Configuration.getConnectionString();
+		storageConnectionString = Configuration.getBlobConnectionString();
 		// Retrieve storage account from connection-string
 		CloudStorageAccount storageAccount =
 		    CloudStorageAccount.parse(storageConnectionString);
@@ -66,6 +66,11 @@ public class TaskManager {
 		
 		ITaskRepository repo = TaskRepositoryFactory.GetRepository();
 		repo.Delete(taskId);
+	}
+	
+	public static void Update(String taskId, boolean status) {
+		ITaskRepository repo = TaskRepositoryFactory.GetRepository();
+		repo.SetComplete(taskId, status);
 	}
 	
 	// TODO - exception handling

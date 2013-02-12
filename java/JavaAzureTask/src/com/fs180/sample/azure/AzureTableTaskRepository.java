@@ -54,7 +54,7 @@ public class AzureTableTaskRepository implements ITaskRepository {
 	}
 
 	@Override
-	public void SetComplete(String taskId, Boolean status) {
+	public void SetComplete(String taskId, boolean status) {
 		// Create the table client.
 		try {
 			CloudTableClient tableClient = getTableClient();

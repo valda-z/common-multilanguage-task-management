@@ -24,7 +24,7 @@ public class MySqlTaskRepository implements ITaskRepository {
 				Statement st = conn.createStatement();
 				
 				ResultSet result = st.executeQuery("SELECT `Id`, `Name`, `Category`, `Date`, `Complete`, `Image` FROM Task");
-				DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+				DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
 				
 				while (result.next()) {
 					TaskEntity task = new TaskEntity();
@@ -73,7 +73,7 @@ public class MySqlTaskRepository implements ITaskRepository {
      }
 
      @Override
-     public void SetComplete(String taskId, Boolean status) {
+     public void SetComplete(String taskId, boolean status) {
     	 
   		try {
  			Class.forName("com.mysql.jdbc.Driver");

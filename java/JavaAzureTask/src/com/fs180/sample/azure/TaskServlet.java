@@ -50,6 +50,11 @@ public class TaskServlet extends HttpServlet implements Servlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String taskId = req.getParameter("delete");
+		boolean delete = true;
+		if ( taskId == null || taskId.isEmpty() ) {
+			taskId = req.getParameter("complete");
+			delete = false;
+		}
 		
 		if ( null == taskId || taskId.isEmpty()  )
 		{
@@ -57,19 +62,17 @@ public class TaskServlet extends HttpServlet implements Servlet {
 			return;
 		}
 
-		TaskManager.Delete(taskId);
+		if( delete )
+			TaskManager.Delete(taskId);
+		else {
+			String val = req.getParameter("val");
+			boolean status = ( val.equals("true") ? true : false );
+			TaskManager.Update(taskId, status);
+			
+		}
 		
 		resp.sendRedirect("index.jsp");
     }
-
-	
-	protected void UpdateTaskPost( String id, String status) 
-	{
-		TaskEntity task = new TaskEntity();
-
-		ITaskRepository repo = TaskRepositoryFactory.GetRepository();
-		repo.SetComplete(task.getRowKey(), true);
-	}
 	
 	protected void AddTaskPost(HttpServletRequest req, HttpServletResponse resp) throws IllegalStateException, IOException, ServletException, InvalidKeyException, URISyntaxException, StorageException
 	{		
