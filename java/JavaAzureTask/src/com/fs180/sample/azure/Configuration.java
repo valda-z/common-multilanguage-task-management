@@ -10,8 +10,9 @@ public class Configuration {
 	
 	private static Map<String, String> getConfiguration()
     {
-       if (com.microsoft.windowsazure.serviceruntime.RoleEnvironment.isAvailable())
-          return com.microsoft.windowsazure.serviceruntime.RoleEnvironment.getConfigurationSettings();
+       if (com.microsoft.windowsazure.serviceruntime.RoleEnvironment.isAvailable()) {
+    	   return com.microsoft.windowsazure.serviceruntime.RoleEnvironment.getConfigurationSettings();
+       }
        
  	   final Properties prop = new Properties();
        
@@ -28,7 +29,12 @@ public class Configuration {
 		{
 				put("Provider", prop.getProperty("Provider"));
 				put("ConnectionString", prop.getProperty("ConnectionString"));
+				put("MySqlUsername", prop.getProperty("MySqlUsername"));
+				put("MySqlPassword", prop.getProperty("MySqlPassword"));
 				put("BlobConnectionString", prop.getProperty("BlobConnectionString"));
+				put("EntityImageLocation", prop.getProperty("EntityImageLocation"));
+				put("CacheEnabled", prop.getProperty("CacheEnabled"));
+				put("CacheKeyName", prop.getProperty("CacheKeyName"));
 		}};
     }
 	
@@ -45,5 +51,25 @@ public class Configuration {
 	public static String getBlobConnectionString()
 	{
 		return config.get("BlobConnectionString");
+	}
+
+	public static boolean getCache() {
+		return Boolean.parseBoolean(config.get("CacheEnabled"));
+	}
+
+	public static String getCacheKeyName() {
+		return config.get("CacheKeyName");
+	}
+	
+	public static String getMySQLUsername() {
+		return config.get("MySqlUsername");
+	}
+	
+	public static String getMySQLPassword() {
+		return config.get("MySqlPassword");
+	}
+	
+	public static String getEntityImageLocation() {
+		return config.get("EntityImageLocation");
 	}
 }

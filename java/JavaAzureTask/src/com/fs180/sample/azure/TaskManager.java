@@ -50,7 +50,6 @@ public class TaskManager {
 	public static Iterable<TaskEntity> getTasks() throws InvalidKeyException, URISyntaxException
 	{
 		ITaskRepository repo = TaskRepositoryFactory.GetRepository();
-
 		return repo.GetList();
 	}
 	

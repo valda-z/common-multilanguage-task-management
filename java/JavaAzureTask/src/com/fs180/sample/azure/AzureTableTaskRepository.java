@@ -2,6 +2,7 @@ package com.fs180.sample.azure;
 
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
+import java.util.ArrayList;
 
 import com.microsoft.windowsazure.services.core.storage.*;
 import com.microsoft.windowsazure.services.table.client.*;
@@ -22,8 +23,21 @@ public class AzureTableTaskRepository implements ITaskRepository {
 		return storageAccount.createCloudTableClient();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Iterable<TaskEntity> GetList() throws InvalidKeyException, URISyntaxException {
+		 boolean usingCache = Configuration.getCache();
+		 
+		 if ( usingCache && Cache.validCache == true ) {
+			 ArrayList<TaskEntity> tasks = (ArrayList<TaskEntity>) Cache.getTasks();
+			 if ( tasks != null && ! tasks.isEmpty() ) {
+				 // Needed because cache can't de-serialize rowKey field
+				 for ( TaskEntity t : tasks ) 
+					 t.setRowKey(t.getId());
+				 return tasks;
+			 }
+		 }
+		
 		// Create the table client.
 		CloudTableClient tableClient = getTableClient();
 
@@ -38,11 +52,21 @@ public class AzureTableTaskRepository implements ITaskRepository {
 		    TableQuery.from("tasks", TaskEntity.class)
 		    .where(partitionFilter);
 
-		return tableClient.execute(partitionQuery);
+		ArrayList<TaskEntity> cache = new ArrayList<TaskEntity>();
+		for ( TaskEntity t : tableClient.execute(partitionQuery) ) {
+			//t.setId( t.getRowKey() );
+			cache.add(t);
+		}
+		Cache.updateTasks(cache);
+		Cache.validateCache();
+		return cache;
 	}
 
 	@Override
 	public void Add(TaskEntity task) throws InvalidKeyException, URISyntaxException, StorageException {
+		Cache.invalidateCache();
+		
+		task.setRowKey( task.getId() );
 		// Create the table client.
 		CloudTableClient tableClient = getTableClient();
 		
@@ -55,6 +79,7 @@ public class AzureTableTaskRepository implements ITaskRepository {
 
 	@Override
 	public void SetComplete(String taskId, boolean status) {
+		Cache.invalidateCache();
 		// Create the table client.
 		try {
 			CloudTableClient tableClient = getTableClient();
@@ -82,6 +107,7 @@ public class AzureTableTaskRepository implements ITaskRepository {
 
 	@Override
 	public void Delete(String taskId) {
+		Cache.invalidateCache();
 		// Create the table client.
 		try {
 			CloudTableClient tableClient = getTableClient();
