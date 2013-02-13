@@ -9,7 +9,16 @@ public class TaskEntity extends TableServiceEntity implements Serializable {
 	public TaskEntity() {
         this.partitionKey = "p1";
         this.rowKey = new Double(new java.util.Date().getTime() / 1000.0).toString();
+        id = this.rowKey;
     }
+	
+	public String getId() {
+		return id;
+	}
+	
+	public void setId( String id ) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -47,5 +56,6 @@ public class TaskEntity extends TableServiceEntity implements Serializable {
 	private String date;
 	private Boolean complete;
 	private String image;
+	private String id;
 
 }

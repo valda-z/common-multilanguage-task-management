@@ -13,14 +13,29 @@ import java.util.Locale;
 
 public class MySqlTaskRepository implements ITaskRepository {
 
+	 @SuppressWarnings("unchecked")
 	 @Override
      public List<TaskEntity> GetList() {
 
 		 ArrayList<TaskEntity> tasks = new ArrayList<TaskEntity>();
+		 boolean usingCache = Configuration.getCache();
+		 
+		 if ( usingCache && Cache.validCache == true ) {
+			 tasks = (ArrayList<TaskEntity>) Cache.getTasks();
+			 if ( tasks != null && ! tasks.isEmpty() ) {
+				 // Needed because cache can't de-serialize rowKey field
+				 for ( TaskEntity t : tasks ) 
+					 t.setRowKey( t.getId() );
+				 return tasks;
+			 }
+				 
+		 }
 			
 			try {
+				String configString = Configuration.getConnectionString() + "?user=" + 
+							Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();
 				Class.forName("com.mysql.jdbc.Driver");
-				java.sql.Connection conn = DriverManager.getConnection( Configuration.getConnectionString() );
+				java.sql.Connection conn = DriverManager.getConnection( configString );
 				Statement st = conn.createStatement();
 				
 				ResultSet result = st.executeQuery("SELECT `Id`, `Name`, `Category`, `Date`, `Complete`, `Image` FROM Task");
@@ -29,6 +44,7 @@ public class MySqlTaskRepository implements ITaskRepository {
 				while (result.next()) {
 					TaskEntity task = new TaskEntity();
 					task.setRowKey(result.getString("Id"));
+					task.setId(result.getString("Id"));
 					task.setName(result.getString("Name"));
 					task.setCategory(result.getString("Category"));
 					task.setDate(df.format(result.getDate("Date")));
@@ -43,20 +59,27 @@ public class MySqlTaskRepository implements ITaskRepository {
 				Logger.LogException(ex);
 			}
 			
+			Cache.updateTasks(tasks);
+			Cache.validateCache();
+			
 			return tasks;
 	 }
 
      @Override
      public void Add(TaskEntity task) {
+    	 Cache.invalidateCache();
+    	 task.setRowKey( task.getId() );
 
  		try {
+			String configString = Configuration.getConnectionString() + "?user=" + 
+					Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();
 			Class.forName("com.mysql.jdbc.Driver");
-			java.sql.Connection conn = DriverManager.getConnection(Configuration.getConnectionString());
+			java.sql.Connection conn = DriverManager.getConnection( configString );
 			PreparedStatement ps = conn.prepareStatement(
 					"INSERT INTO Task (`Id`, `Name`, `Category`, `Date`, `Complete`, `Image`)" +
 					" VALUES (?, ?, ?, STR_TO_DATE(?, '%m/%d/%Y'), ?, ?)");
 
-			ps.setString(1, task.getRowKey());
+			ps.setString(1, task.getId());
 			ps.setString(2, task.getName());
 			ps.setString(3, task.getCategory());
 			ps.setString(4, task.getDate());
@@ -74,10 +97,12 @@ public class MySqlTaskRepository implements ITaskRepository {
 
      @Override
      public void SetComplete(String taskId, boolean status) {
-    	 
+    	Cache.invalidateCache();
   		try {
- 			Class.forName("com.mysql.jdbc.Driver");
- 			java.sql.Connection conn = DriverManager.getConnection(Configuration.getConnectionString());
+			String configString = Configuration.getConnectionString() + "?user=" + 
+					Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();
+			Class.forName("com.mysql.jdbc.Driver");
+			java.sql.Connection conn = DriverManager.getConnection( configString );
  			Statement st = conn.createStatement();
  			try {
  				String sql = "UPDATE Task SET Complete=" + status + " WHERE Id=" + taskId + ";";
@@ -94,10 +119,13 @@ public class MySqlTaskRepository implements ITaskRepository {
 
      @Override
      public void Delete(String taskId) {
+    	 Cache.invalidateCache();
     	 
  		try {
+			String configString = Configuration.getConnectionString() + "?user=" + 
+					Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();
 			Class.forName("com.mysql.jdbc.Driver");
-			java.sql.Connection conn = DriverManager.getConnection(Configuration.getConnectionString());
+			java.sql.Connection conn = DriverManager.getConnection( configString );
 			Statement st = conn.createStatement();
 			try {
 				String sql = "DELETE FROM Task WHERE Id=" + taskId + ";";

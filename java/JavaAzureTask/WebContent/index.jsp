@@ -89,7 +89,7 @@
                     </td>
                     <td class="align-center">
                     <%if (entity.getImage() != null && !entity.getImage().isEmpty()) { %>
-                    <a href="https://zim.blob.core.windows.net/images/<%=entity.getImage() %>" rel="lightbox"><img src="images/icon-image.png" alt="image" title="image" /></a>
+                    <a href="<%=Configuration.getEntityImageLocation() + entity.getImage() %>" rel="lightbox"><img src="images/icon-image.png" alt="image" title="image" /></a>
                     <%} %>
                     </td>
                     <td class="align-center">
