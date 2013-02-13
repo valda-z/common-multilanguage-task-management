@@ -33,9 +33,9 @@ BLOB_ATTACHMENT_PATH = 'https://' + STORAGE_ACCOUNT_NAME + '.blob.core.windows.n
 
 #Azure Service Bus Settings
 SB_ENABLED = True
-SB_NAMESPACE = os.getenv('SB_NAMESPACE','invader')
+SB_NAMESPACE = os.getenv('SB_NAMESPACE','')
 SB_ISSUER = os.getenv('SB_ISSUER','owner')
-SB_KEY = os.getenv('SB_KEY','your service bus key here')
+SB_KEY = os.getenv('SB_KEY','')
 SB_TOPIC = os.getenv('SB_TOPIC','tasks')
 
 # Local time zone for this installation. Choices can be found here:

@@ -85,7 +85,7 @@
                 </td>
                 <td>
                     {% if task.Image != None %}
-                    <a href="https://zim.blob.core.windows.net/images/{{ task.Image }}" rel="lightbox"><img src="{% static "images/icon-image.png"%}" alt="view image" title="view attachment" /></a>
+                    <a href="{{ attachmentBaseUrl }}{{ task.Image }}" rel="lightbox"><img src="{% static "images/icon-image.png"%}" alt="view image" title="view attachment" /></a>
                     {% endif %}
                 </td>
                 <td><a href="/delete/{{ task.RowKey }}"><img src="{% static "images/icon-delete.png"%}" alt="delete" title="delete" /></a></td>

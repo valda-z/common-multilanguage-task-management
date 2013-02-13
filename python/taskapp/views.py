@@ -38,7 +38,7 @@ def index(request): #Define our function, accept a request
 
     #Get the full list of tasks and render the view
     tasks = table_service.query_entities('tasks', "PartitionKey eq 'p1'")
-    return render(request, 'base.html', {'tasks':tasks})
+    return render(request, 'base.html', {'tasks':tasks, 'attachmentBaseUrl': BLOB_ATTACHMENT_PATH})
 
 #Delete a task from the task list
 def deleteTask(request, taskId):
