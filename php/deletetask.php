@@ -13,14 +13,17 @@ try{
 
     $tableRestProxy->deleteEntity('tasks', $_GET['pk'], $_GET['rk']);
 
-    // Create message.
-    $message = new BrokeredMessage();
-    $message->setProperty('action','delete');
-    $message->setProperty('sample','php');
-    $message->setBody($taskname);
+    if ($sbEnable)
+    {
+        // Create message.
+        $message = new BrokeredMessage();
+        $message->setProperty('action','delete');
+        $message->setProperty('sample','php');
+        $message->setBody($taskname);
 
-    // Send message.
-    $serviceBusRestProxy->sendTopicMessage("tasks", $message);
+        // Send message.
+        $serviceBusRestProxy->sendTopicMessage("tasks", $message);
+    }
 }
 catch(ServiceException $e){
     $code = $e->getCode();

@@ -25,13 +25,16 @@ try{
     $tableRestProxy->insertEntity('tasks', $entity);
 
     // Create message.
-    $message = new BrokeredMessage();
-    $message->setProperty('action','add');
-    $message->setProperty('sample','php');
-    $message->setBody($_POST['itemname']);
+    if ($sbEnable)
+    {
+        $message = new BrokeredMessage();
+        $message->setProperty('action','add');
+        $message->setProperty('sample','php');
+        $message->setBody($_POST['itemname']);
 
-    // Send message.
-    $serviceBusRestProxy->sendTopicMessage("tasks", $message);
+        // Send message.
+        $serviceBusRestProxy->sendTopicMessage("tasks", $message);
+    }
 
 }
 catch(ServiceException $e){

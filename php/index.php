@@ -87,10 +87,10 @@ for ($i = 0; $i < count($entities); $i++) {
             <td>".$entities[$i]->getPropertyValue('Category')."</td>
             <td>".$entities[$i]->getPropertyValue('Date')."</td>";
 
-    if ($entities[$i]->getPropertyValue('Complete') == false)
-        echo "<td><a href='completetask.php?complete=true&pk=".$entities[$i]->getPartitionKey()."&rk=".$entities[$i]->getRowKey()."'><img src=\"images/checked.png\" alt=\"complete\" title=\"complete\" /></a></td>";
+    if ($entities[$i]->getPropertyValue('Complete') == true)
+        echo "<td><a href='completetask.php?complete=false&pk=".$entities[$i]->getPartitionKey()."&rk=".$entities[$i]->getRowKey()."'><img src=\"images/checked.png\" alt=\"complete\" title=\"complete\" /></a></td>";
     else
-        echo "<td><a href='completetask.php?complete=false&pk=".$entities[$i]->getPartitionKey()."&rk=".$entities[$i]->getRowKey()."'><img src=\"images/unchecked.png\" alt=\"complete\" title=\"complete\" /></a></td>";
+        echo "<td><a href='completetask.php?complete=true&pk=".$entities[$i]->getPartitionKey()."&rk=".$entities[$i]->getRowKey()."'><img src=\"images/unchecked.png\" alt=\"complete\" title=\"complete\" /></a></td>";
 
     echo "<td class=\"align-center\">";
 

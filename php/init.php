@@ -7,16 +7,23 @@ use WindowsAzure\Common\ServiceException;
 
 $connectionString = getenv("STORAGE_CONNECTION");
 if ($connectionString == null)
-    $connectionString = "STORAGE_CONNECTION_STRING";
+    $connectionString = "DefaultEndpointsProtocol=http;AccountName=zim;AccountKey=0c26sS8E+Nz1BJmgWVRLMEUPKPwa1lt3jvdjjXgZQ/FVdjKJHGl2GV96jVJvciV8In290PXuNLPZBPc0AOvb2g==";
 
 $sbConnectionString = getenv("SB_CONNECTION");
 if ($sbConnectionString == null)
-    $sbConnectionString = "<SERVICEBUS_CONNECTION_STRING>";
+    $sbConnectionString = "Endpoint=https://invader.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=7TkK9JqQXbLdy5fH9mhEivU+Js4RpsVI9TaugN6/zdA=";
+
+$sbEnable = getenv("SB_ENABLE");
+if ($sbEnable == null)
+    $sbEnable = false;
+else
+    $sbEnable = ($sbEnable && strtolower($sbEnable) == "true");
 
 $tableRestProxy = ServicesBuilder::getInstance()->createTableService($connectionString);
 
 $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
 
-$serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($sbConnectionString);
+if ($sbEnable)
+    $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($sbConnectionString);
 
 ?>
