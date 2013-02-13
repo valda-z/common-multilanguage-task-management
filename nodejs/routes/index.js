@@ -57,7 +57,7 @@ TaskController.prototype = {
     deleteTask: function(req, res) {
         var self = this;
         self.repository.deleteItem(req.params.taskId, function(err) {
-            self.messaging.sendMessage('delete', newTask.Name);
+            // We need to retrieve the task or return deleted task from repository
             res.redirect('/');
         });
     },
