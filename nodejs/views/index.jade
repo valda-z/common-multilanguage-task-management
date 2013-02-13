@@ -1,0 +1,98 @@
+extends layout
+
+block head
+    link(href='/stylesheets/lightbox.css', rel='stylesheet')
+    script(src='/javascripts/lightbox.js')
+    script(type='text/javascript')
+        $(document).ready(function() {
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            var dateString =(tomorrow.getMonth()+1) + '/' + tomorrow.getDate() + '/' +
+            tomorrow.getFullYear();
+            $("#datepicker").val(dateString);
+            $( "#datepicker" ).datepicker();
+            $('#create').click(function(e) {
+                $('#additemform').submit();
+            });
+
+            $('#select-complete').live('change', function () {
+                window.location.href = 'markitem.php?pk=' + $(this).val();
+            });
+
+            var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+            if (is_chrome)
+            {
+                $('#uploadbutton').click(function(e) {
+                    e.preventDefault();
+                    $('#upload').trigger('click');
+                });
+
+                $('#upload').live('change', function() {
+                    $('#imagename').html(this.value.split('\\').pop())
+                });
+            }
+            else
+            {
+                $('#upload').css('display','block');
+                $('#uploadlabel').css('display','block');
+                $('#uploadbutton').css('display', 'none');
+            }
+        });
+
+
+
+block content
+ .container
+    h1 Azure Task List
+    #main-body
+        table
+            thead
+                tr
+                    th.name Name
+                    th.category Category
+                    th.small Date
+                    th.collapse Complete
+                    th.collapse Attachment
+                    th.collapse Delete
+            tbody
+                if (null != tasks)
+                    each task in tasks
+                        tr
+                            td #{task.Name}
+                            td #{task.Category}
+                            td #{task.Date}
+                            td
+                                if task.Complete
+                                    a(href='/complete/'+task.RowKey+'/false')
+                                        img(src='/images/checked.png', alt='complete', title='complete')
+                                else
+                                    a(href='/complete/'+task.RowKey+'/true')
+                                        img(src='/images/unchecked.png', alt='incomplete', title='incomplete')
+                            td
+                                if task.Image != undefined && task.Image != ''
+                                    a(href='#{attachmentBaseUrl}'+task.Image, rel='lightbox')
+                                        img(src='/images/icon-image.png', alt='view image', title='view attachment')
+                            td
+                                a(href='/delete/'+task.RowKey)
+                                    img(src='/images/icon-delete.png', alt='delete', title='delete')
+    .widget
+        form#additemform(name='additemform', action='/add', method='post', enctype='multipart/form-data')
+            div(style='display: none;')
+            .add-container
+                h2 Add Item
+                label Item Name
+                input(type='text', name='item[Name]')
+                label Category
+                input(type='text', name='item[Category]')
+                label Date
+                input#datepicker.small.calendar(name='item[Date]', type='text', value='1/16/13')
+                label#uploadlabel(style='display: none;') Attachment
+                input#upload(type='file', name='upload', style='display: none;')
+                .clear
+                a#uploadbutton.upload(href='#') Attachment
+                span#imagename.image-name
+                a#create(class='create') Create
+    footer
+        a(href='http://task.codeplex.com', target='_blank', class='project-link') View Project
+        img(src='images/lang-node.png', alt='language icon', title='language icon')
+
