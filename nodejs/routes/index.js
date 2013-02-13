@@ -1,14 +1,16 @@
 var azure = require('azure')
     , async = require('async')
     , uuid = require('node-uuid')
+    , express = require('express')
     , TaskEntity = require('../models/task');
 
 module.exports = TaskController;
 
-function TaskController(repository, blobStore, messaging) {
+function TaskController(repository, blobStore, messaging, attachmentBaseUrl) {
     this.repository = repository;
     this.blobStore = blobStore;
     this.messaging = messaging;
+    this.attachmentBaseUrl = attachmentBaseUrl;
 }
 
 TaskController.prototype = {
@@ -16,7 +18,8 @@ TaskController.prototype = {
         var self = this;
 
         self.repository.getAllTasks(function(err, items) {
-            res.render('index',{title: 'Task List ', tasks: items});
+            var app = express();
+            res.render('index',{title: 'Node.js Task List', attachmentBaseUrl: self.attachmentBaseUrl, tasks: items});
         });
     },
 
@@ -29,7 +32,7 @@ TaskController.prototype = {
         newTask.Category = item.Category;
         newTask.Date = item.Date;
         newTask.Complete = false;
-        if (req.files.upload != null && req.files.upload.path != null)
+        if (req.files.upload.name != '' && req.files.upload.size > 0)
         {
             var tmpFile = req.files.upload.path;
             var fileName = req.files.upload.name;
@@ -46,6 +49,7 @@ TaskController.prototype = {
         }
 
         self.repository.addItem(newTask, function (err) {
+            self.messaging.sendMessage('add', newTask.Name);
             res.redirect('/');
         });
     },
@@ -53,6 +57,7 @@ TaskController.prototype = {
     deleteTask: function(req, res) {
         var self = this;
         self.repository.deleteItem(req.params.taskId, function(err) {
+            self.messaging.sendMessage('delete', newTask.Name);
             res.redirect('/');
         });
     },

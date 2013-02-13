@@ -13,7 +13,7 @@ function AzureServiceBus(connectionString, topic) {
         DefaultMessageTimeToLive: 'PT1M'
     };
 
-    serviceBusService.createTopicIfNotExists(topic, topicOptions, function(error){
+    this.serviceBusService.createTopicIfNotExists(topic, topicOptions, function(error){
         if(!error){
             // topic was created or exists
         }
@@ -28,7 +28,7 @@ AzureServiceBus.prototype = {
             body: msg,
             customProperties: {
                 action: action,
-                language: node
+                sample: 'node.js'
             }
         }
 

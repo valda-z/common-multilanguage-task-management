@@ -58,7 +58,8 @@ if (sbUse == 'true' || sbUse == 'True')
 
 var TaskController = require('./routes/index');
 
-var taskController = new TaskController(taskStore, blobStore, sb);
+var attachmentBaseUrl = 'https://' + accountName + '.blob.core.windows.net/' + blobContainer + '/';
+var taskController = new TaskController(taskStore, blobStore, sb, attachmentBaseUrl);
 
 //Configure Routes
 app.get('/', taskController.home.bind(taskController));

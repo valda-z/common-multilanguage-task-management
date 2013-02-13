@@ -70,7 +70,7 @@ block content
                                         img(src='/images/unchecked.png', alt='incomplete', title='incomplete')
                             td
                                 if task.Image != undefined && task.Image != ''
-                                    a(href='https://zim.blob.core.windows.net/images/'+task.Image, rel='lightbox')
+                                    a(href='#{attachmentBaseUrl}'+task.Image, rel='lightbox')
                                         img(src='/images/icon-image.png', alt='view image', title='view attachment')
                             td
                                 a(href='/delete/'+task.RowKey)

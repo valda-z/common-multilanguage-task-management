@@ -7,7 +7,7 @@
     "STORAGE_PROVIDER": "azure",
     "CAS_HOSTS": "",
     "CAS_KS_NAME": "tasks",
-    "SB_ENABLED": "false",
+    "SB_ENABLED": "true",
     "SB_CONNECTION_STRING": "",
     "SB_TOPIC": "tasks"
 }
