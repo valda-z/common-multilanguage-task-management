@@ -96,7 +96,7 @@ for ($i = 0; $i < count($entities); $i++) {
 
     if ($entities[$i]->getPropertyValue('Image') != '')
     {
-        echo "<a href=\"https://zim.blob.core.windows.net/images/" .$entities[$i]->getPropertyValue('Image')."\" rel=\"lightbox\"><img src=\"images/icon-image.png\" alt=\"image\" title=\"image\" /></a>";
+        echo "<a href=\"".$baseAttachmentUrl. "" .$entities[$i]->getPropertyValue('Image')."\" rel=\"lightbox\"><img src=\"images/icon-image.png\" alt=\"image\" title=\"image\" /></a>";
     }
 
     echo "</td>

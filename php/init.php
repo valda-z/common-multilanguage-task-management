@@ -11,7 +11,11 @@ if ($connectionString == null)
 
 $sbConnectionString = getenv("SB_CONNECTION");
 if ($sbConnectionString == null)
-    $sbConnectionString = "Endpoint=";
+    $sbConnectionString = "";
+
+$baseAttachmentUrl = getenv("SB_BASE_ATTACH_PATH");
+if ($baseAttachmentUrl == null)
+    $baseAttachmentUrl = "https://zim.blob.core.windows.net/images/";
 
 $sbEnable = getenv("SB_ENABLE");
 if ($sbEnable == null)
