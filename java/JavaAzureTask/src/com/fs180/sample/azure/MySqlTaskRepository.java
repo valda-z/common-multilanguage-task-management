@@ -13,24 +13,10 @@ import java.util.Locale;
 
 public class MySqlTaskRepository implements ITaskRepository {
 
-	 @SuppressWarnings("unchecked")
 	 @Override
      public List<TaskEntity> GetList() {
 
 		 ArrayList<TaskEntity> tasks = new ArrayList<TaskEntity>();
-		 boolean usingCache = Configuration.getCache();
-		 
-		 if ( usingCache && Cache.validCache == true ) {
-			 tasks = (ArrayList<TaskEntity>) Cache.getTasks();
-			 if ( tasks != null && ! tasks.isEmpty() ) {
-				 // Needed because cache can't de-serialize rowKey field
-				 for ( TaskEntity t : tasks ) 
-					 t.setRowKey( t.getId() );
-				 return tasks;
-			 }
-				 
-		 }
-			
 			try {
 				String configString = Configuration.getConnectionString() + "?user=" + 
 							Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();
@@ -57,17 +43,13 @@ public class MySqlTaskRepository implements ITaskRepository {
 				Logger.LogSQLException(ex);
 			} catch ( Exception ex ) {
 				Logger.LogException(ex);
-			}
-			
-			Cache.updateTasks(tasks);
-			Cache.validateCache();
+			}			
 			
 			return tasks;
 	 }
 
      @Override
      public void Add(TaskEntity task) {
-    	 Cache.invalidateCache();
     	 task.setRowKey( task.getId() );
 
  		try {
@@ -97,7 +79,6 @@ public class MySqlTaskRepository implements ITaskRepository {
 
      @Override
      public void SetComplete(String taskId, boolean status) {
-    	Cache.invalidateCache();
   		try {
 			String configString = Configuration.getConnectionString() + "?user=" + 
 					Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();
@@ -118,9 +99,7 @@ public class MySqlTaskRepository implements ITaskRepository {
      
 
      @Override
-     public void Delete(String taskId) {
-    	 Cache.invalidateCache();
-    	 
+     public void Delete(String taskId) {    	 
  		try {
 			String configString = Configuration.getConnectionString() + "?user=" + 
 					Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();

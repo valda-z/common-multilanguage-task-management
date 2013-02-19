@@ -35,6 +35,11 @@ public class Configuration {
 				put("EntityImageLocation", prop.getProperty("EntityImageLocation"));
 				put("CacheEnabled", prop.getProperty("CacheEnabled"));
 				put("CacheKeyName", prop.getProperty("CacheKeyName"));
+				put("SBEnabled", prop.getProperty("SBEnabled"));
+				put("SBName", prop.getProperty("SBName"));
+				put("SBIssuer", prop.getProperty("SBIssuer"));
+				put("SBKey", prop.getProperty("SBKey"));
+				put("SBTopic", prop.getProperty("SBTopic"));
 		}};
     }
 	
@@ -71,5 +76,25 @@ public class Configuration {
 	
 	public static String getEntityImageLocation() {
 		return config.get("EntityImageLocation");
+	}
+	
+	public static String getSBKey() {
+		return config.get("SBKey");
+	}
+	
+	public static String getSBIssuer() {
+		return config.get("SBIssuer");
+	}
+
+	public static String getSBName() {
+		return config.get("SBName");
+	}
+	
+	public static boolean getSBEnabled() {
+		return Boolean.parseBoolean(config.get("SBEnabled"));
+	}
+	
+	public static String getSBTopic() {
+		return config.get("SBTopic");
 	}
 }

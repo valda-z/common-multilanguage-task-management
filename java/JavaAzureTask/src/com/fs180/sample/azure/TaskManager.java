@@ -4,23 +4,21 @@ package com.fs180.sample.azure;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
+import java.util.ArrayList;
 
 import com.microsoft.windowsazure.services.blob.client.*;
+import com.microsoft.windowsazure.services.core.ServiceException;
 import com.microsoft.windowsazure.services.core.storage.*;
-
-import javax.jms.*;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-
-import java.util.Hashtable;
+import com.microsoft.windowsazure.services.serviceBus.ServiceBusConfiguration;
+import com.microsoft.windowsazure.services.serviceBus.ServiceBusContract;
+import com.microsoft.windowsazure.services.serviceBus.ServiceBusService;
+import com.microsoft.windowsazure.services.serviceBus.models.BrokeredMessage;
 
 public class TaskManager {
 	
 	private static String storageConnectionString = null;
-	private static javax.jms.Connection connection;
-	private static Session sendSession;
-	private static MessageProducer sender;
-	private static Context context;
+	private static com.microsoft.windowsazure.services.core.Configuration config = null;
+	private static ServiceBusContract service = null;
 	
 	private static CloudBlobClient getBlobClient() throws InvalidKeyException, URISyntaxException
 	{
@@ -47,91 +45,102 @@ public class TaskManager {
 		blob.upload(stream, fileSize);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static Iterable<TaskEntity> getTasks() throws InvalidKeyException, URISyntaxException
 	{
+		// Check to see if we are using the cache and if the cache is valid.
+		// If so, simply return the cache. 
+		boolean usingCache = Configuration.getCache();
+		ArrayList<TaskEntity> tasks = new ArrayList<TaskEntity>();
+		 
+		if ( usingCache && Cache.validCache == true ) {
+			tasks = (ArrayList<TaskEntity>) Cache.getTasks();
+			if ( tasks != null && ! tasks.isEmpty() ) {
+				// Needed because cache can't de-serialize rowKey field
+				for ( TaskEntity t : tasks ) 
+					t.setRowKey( t.getId() );
+				return tasks;
+			}
+				 
+		}
+		
+		// Else, we need to get the list from the repository. 
+		// Update the cache afterwards.
 		ITaskRepository repo = TaskRepositoryFactory.GetRepository();
-		return repo.GetList();
+		tasks = (ArrayList<TaskEntity>) repo.GetList();
+		Cache.updateTasks(tasks);
+		Cache.validateCache();
+		return tasks;
 	}
 	
 	public static void Add(TaskEntity task ) throws InvalidKeyException, URISyntaxException, StorageException
 	{
-		
+		// Invalidate the cache, then add the task in the repository.
+		Cache.invalidateCache();
 		ITaskRepository repo = TaskRepositoryFactory.GetRepository();
 		repo.Add(task);
+		SendUpdate( "add", task.getName() );
 	}
 	
 	public static void Delete(String taskId)
 	{
-		
+		// Invalidate the cache, then delete it from the repository.
+		Cache.invalidateCache();
 		ITaskRepository repo = TaskRepositoryFactory.GetRepository();
 		repo.Delete(taskId);
+		SendUpdate( "delete", taskId );
 	}
 	
-	public static void Update(String taskId, boolean status) {
+	public static void Update(String taskId, boolean status) 
+	{
+		// Invalidate the cache, then update the task in the repository.
+		Cache.invalidateCache();
 		ITaskRepository repo = TaskRepositoryFactory.GetRepository();
 		repo.SetComplete(taskId, status);
+		SendUpdate( "update", taskId + " : status set to : " + status );
 	}
 	
-	// TODO - exception handling
 	public static void SendUpdate(String action, String msg)
 	{
-		try {
-			initiateJMSConnection();
-			sendMessage( action, msg );
-			closeJMSConnection();
-		} catch (Exception ex) 
-		{
-			Logger.LogException(ex);
+		// If we are using a service bus, send the given message.
+		if ( Configuration.getSBEnabled() ) {
+			try {
+				sendMessage( action, msg );
+			} catch (Exception ex) 
+			{
+				Logger.LogException(ex);
+			}
 		}
 	}
 	
-	public static void sendMessage( String action, String msg ) throws JMSException
+	public static void sendMessage( String action, String msg ) throws ServiceException
 	{
-		// Create the message
-		BytesMessage message = sendSession.createBytesMessage();
-		// Set the body as the message
-		message.writeObject( msg );
-		// Include a property under 'action' as 'add' or 'delete'
-		message.setStringProperty("action", action);
-		// Include Client language as Java
-		message.setStringProperty("sample", "java");
-		// Send the message to the topic
-		sender.send( message );
-	}
-	
-	public static void initiateJMSConnection() 
-	{
-		try 
-		{
-			// Configure JNDI Environment
-            Hashtable<String, String> env = new Hashtable<String, String>();
-            env.put(Context.INITIAL_CONTEXT_FACTORY,
-            "org.apache.qpid.amqp_1_0.jms.jndi.PropertiesFileInitialContextFactory");
-            env.put(Context.PROVIDER_URL, "servicebus.properties");
-            context = new InitialContext(env);
-    
-            // Lookup ConnectionFactory and Topic
-            ConnectionFactory cf = (ConnectionFactory) context.lookup("SBCONNECTIONFACTORY");
-            Destination topic = (Destination) context.lookup("TOPIC");
-            
-			// Create Connection
-			connection = cf.createConnection();
-			
-			// Create sender-side Session and MessageProducer
-            sendSession = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            sender = sendSession.createProducer(topic);
-            
-		} catch (Exception ex) 
-		{
-			Logger.LogException(ex);
+		// Get the values for the service bus.
+		String serviceBus = Configuration.getSBName();
+		String issuer = Configuration.getSBIssuer();
+		String key = Configuration.getSBKey();
+		String sbTopic = Configuration.getSBTopic();
+		
+		if ( config == null ) {
+			config = ServiceBusConfiguration.configureWithWrapAuthentication(
+						serviceBus, 
+						issuer,
+						key,
+						".servicebus.windows.net/",
+						"-sb.accesscontrol.windows.net/WRAPv0.9");
 		}
+		
+		if ( service == null ) 
+			service = ServiceBusService.create(config);
+		
+		
+		BrokeredMessage message = new BrokeredMessage(msg);
+		
+		// Set the action property and which sample we are using
+		message.setProperty( "action", action );
+		message.setProperty( "sample" , "java" );
+		
+	    service.sendQueueMessage( sbTopic, message);
+		
 	}
-	
-	public static void closeJMSConnection() throws JMSException
-	{
-		sender.close();
-		sendSession.close();
-		connection.close();
-	}
-
 }
