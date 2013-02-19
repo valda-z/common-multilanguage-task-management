@@ -23,7 +23,7 @@ def index(request): #Define our function, accept a request
         #If there is an attachment save it to BLOB storage and add the name to the Task entity
         if 'upload' in request.FILES:
             #Create a filename using GUID and the uploaded file extension
-            fileName = str(uuid.uuid1()) + '.' + os.path.splitext(request.FILES['upload'].name)[1]
+            fileName = str(uuid.uuid1()) + os.path.splitext(request.FILES['upload'].name)[1]
             file = request.FILES['upload'].read()
 
             blob_service = BlobService(account_name=STORAGE_ACCOUNT_NAME, account_key=STORAGE_ACCOUNT_KEY)

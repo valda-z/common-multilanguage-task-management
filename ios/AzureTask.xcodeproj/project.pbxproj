@@ -1,0 +1,327 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D84C3D9016C39AD100C00E9F /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D84C3D8F16C39AD100C00E9F /* Checkmark.png */; };
+		D84C3D9316C39B6400C00E9F /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = D84C3D9216C39B6400C00E9F /* Task.m */; };
+		D84C3D9516C39F4100C00E9F /* Paperclip.png in Resources */ = {isa = PBXBuildFile; fileRef = D84C3D9416C39F4100C00E9F /* Paperclip.png */; };
+		D8A24F8D16BB5E5F0029B775 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A24F8C16BB5E5F0029B775 /* UIKit.framework */; };
+		D8A24F8F16BB5E5F0029B775 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A24F8E16BB5E5F0029B775 /* Foundation.framework */; };
+		D8A24F9116BB5E5F0029B775 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A24F9016BB5E5F0029B775 /* CoreGraphics.framework */; };
+		D8A24F9716BB5E5F0029B775 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8A24F9516BB5E5F0029B775 /* InfoPlist.strings */; };
+		D8A24F9916BB5E5F0029B775 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A24F9816BB5E5F0029B775 /* main.m */; };
+		D8A24F9D16BB5E5F0029B775 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A24F9C16BB5E5F0029B775 /* AppDelegate.m */; };
+		D8A24F9F16BB5E5F0029B775 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A24F9E16BB5E5F0029B775 /* Default.png */; };
+		D8A24FA116BB5E5F0029B775 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A24FA016BB5E5F0029B775 /* Default@2x.png */; };
+		D8A24FA316BB5E5F0029B775 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A24FA216BB5E5F0029B775 /* Default-568h@2x.png */; };
+		D8A24FA616BB5E5F0029B775 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8A24FA416BB5E5F0029B775 /* MainStoryboard.storyboard */; };
+		D8A24FA916BB5E5F0029B775 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A24FA816BB5E5F0029B775 /* MasterViewController.m */; };
+		D8A24FAC16BB5E5F0029B775 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A24FAB16BB5E5F0029B775 /* DetailViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D84C3D8F16C39AD100C00E9F /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
+		D84C3D9116C39B6400C00E9F /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		D84C3D9216C39B6400C00E9F /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		D84C3D9416C39F4100C00E9F /* Paperclip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Paperclip.png; sourceTree = "<group>"; };
+		D8A24F8916BB5E5F0029B775 /* AzureTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AzureTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8A24F8C16BB5E5F0029B775 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D8A24F8E16BB5E5F0029B775 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D8A24F9016BB5E5F0029B775 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D8A24F9416BB5E5F0029B775 /* AzureTask-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AzureTask-Info.plist"; sourceTree = "<group>"; };
+		D8A24F9616BB5E5F0029B775 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D8A24F9816BB5E5F0029B775 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D8A24F9A16BB5E5F0029B775 /* AzureTask-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AzureTask-Prefix.pch"; sourceTree = "<group>"; };
+		D8A24F9B16BB5E5F0029B775 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D8A24F9C16BB5E5F0029B775 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D8A24F9E16BB5E5F0029B775 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D8A24FA016BB5E5F0029B775 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		D8A24FA216BB5E5F0029B775 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D8A24FA516BB5E5F0029B775 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		D8A24FA716BB5E5F0029B775 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		D8A24FA816BB5E5F0029B775 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		D8A24FAA16BB5E5F0029B775 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		D8A24FAB16BB5E5F0029B775 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D8A24F8616BB5E5F0029B775 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A24F8D16BB5E5F0029B775 /* UIKit.framework in Frameworks */,
+				D8A24F8F16BB5E5F0029B775 /* Foundation.framework in Frameworks */,
+				D8A24F9116BB5E5F0029B775 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D8A24F8016BB5E5F0029B775 = {
+			isa = PBXGroup;
+			children = (
+				D8A24F9216BB5E5F0029B775 /* AzureNotes1 */,
+				D8A24F9316BB5E5F0029B775 /* Supporting Files */,
+				D8A24F8B16BB5E5F0029B775 /* Frameworks */,
+				D8A24F8A16BB5E5F0029B775 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D8A24F8A16BB5E5F0029B775 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D8A24F8916BB5E5F0029B775 /* AzureTask.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D8A24F8B16BB5E5F0029B775 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D8A24F8C16BB5E5F0029B775 /* UIKit.framework */,
+				D8A24F8E16BB5E5F0029B775 /* Foundation.framework */,
+				D8A24F9016BB5E5F0029B775 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D8A24F9216BB5E5F0029B775 /* AzureNotes1 */ = {
+			isa = PBXGroup;
+			children = (
+				D84C3D9416C39F4100C00E9F /* Paperclip.png */,
+				D84C3D8F16C39AD100C00E9F /* Checkmark.png */,
+				D8A24F9B16BB5E5F0029B775 /* AppDelegate.h */,
+				D8A24F9C16BB5E5F0029B775 /* AppDelegate.m */,
+				D8A24FA416BB5E5F0029B775 /* MainStoryboard.storyboard */,
+				D8A24FA716BB5E5F0029B775 /* MasterViewController.h */,
+				D8A24FA816BB5E5F0029B775 /* MasterViewController.m */,
+				D8A24FAA16BB5E5F0029B775 /* DetailViewController.h */,
+				D8A24FAB16BB5E5F0029B775 /* DetailViewController.m */,
+				D84C3D9116C39B6400C00E9F /* Task.h */,
+				D84C3D9216C39B6400C00E9F /* Task.m */,
+			);
+			path = AzureNotes1;
+			sourceTree = "<group>";
+		};
+		D8A24F9316BB5E5F0029B775 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D8A24F9416BB5E5F0029B775 /* AzureTask-Info.plist */,
+				D8A24F9516BB5E5F0029B775 /* InfoPlist.strings */,
+				D8A24F9816BB5E5F0029B775 /* main.m */,
+				D8A24F9A16BB5E5F0029B775 /* AzureTask-Prefix.pch */,
+				D8A24F9E16BB5E5F0029B775 /* Default.png */,
+				D8A24FA016BB5E5F0029B775 /* Default@2x.png */,
+				D8A24FA216BB5E5F0029B775 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			path = AzureNotes1;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D8A24F8816BB5E5F0029B775 /* AzureTask */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8A24FAF16BB5E5F0029B775 /* Build configuration list for PBXNativeTarget "AzureTask" */;
+			buildPhases = (
+				D8A24F8516BB5E5F0029B775 /* Sources */,
+				D8A24F8616BB5E5F0029B775 /* Frameworks */,
+				D8A24F8716BB5E5F0029B775 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AzureTask;
+			productName = AzureNotes1;
+			productReference = D8A24F8916BB5E5F0029B775 /* AzureTask.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D8A24F8116BB5E5F0029B775 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Developer Extraordinaire";
+			};
+			buildConfigurationList = D8A24F8416BB5E5F0029B775 /* Build configuration list for PBXProject "AzureTask" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D8A24F8016BB5E5F0029B775;
+			productRefGroup = D8A24F8A16BB5E5F0029B775 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D8A24F8816BB5E5F0029B775 /* AzureTask */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D8A24F8716BB5E5F0029B775 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A24F9716BB5E5F0029B775 /* InfoPlist.strings in Resources */,
+				D8A24F9F16BB5E5F0029B775 /* Default.png in Resources */,
+				D8A24FA116BB5E5F0029B775 /* Default@2x.png in Resources */,
+				D8A24FA316BB5E5F0029B775 /* Default-568h@2x.png in Resources */,
+				D8A24FA616BB5E5F0029B775 /* MainStoryboard.storyboard in Resources */,
+				D84C3D9016C39AD100C00E9F /* Checkmark.png in Resources */,
+				D84C3D9516C39F4100C00E9F /* Paperclip.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D8A24F8516BB5E5F0029B775 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A24F9916BB5E5F0029B775 /* main.m in Sources */,
+				D8A24F9D16BB5E5F0029B775 /* AppDelegate.m in Sources */,
+				D8A24FA916BB5E5F0029B775 /* MasterViewController.m in Sources */,
+				D8A24FAC16BB5E5F0029B775 /* DetailViewController.m in Sources */,
+				D84C3D9316C39B6400C00E9F /* Task.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D8A24F9516BB5E5F0029B775 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8A24F9616BB5E5F0029B775 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D8A24FA416BB5E5F0029B775 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8A24FA516BB5E5F0029B775 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D8A24FAD16BB5E5F0029B775 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D8A24FAE16BB5E5F0029B775 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D8A24FB016BB5E5F0029B775 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AzureNotes1/AzureTask-Prefix.pch";
+				INFOPLIST_FILE = "AzureNotes1/AzureTask-Info.plist";
+				PRODUCT_NAME = AzureTask;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D8A24FB116BB5E5F0029B775 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AzureNotes1/AzureTask-Prefix.pch";
+				INFOPLIST_FILE = "AzureNotes1/AzureTask-Info.plist";
+				PRODUCT_NAME = AzureTask;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D8A24F8416BB5E5F0029B775 /* Build configuration list for PBXProject "AzureTask" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8A24FAD16BB5E5F0029B775 /* Debug */,
+				D8A24FAE16BB5E5F0029B775 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8A24FAF16BB5E5F0029B775 /* Build configuration list for PBXNativeTarget "AzureTask" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8A24FB016BB5E5F0029B775 /* Debug */,
+				D8A24FB116BB5E5F0029B775 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D8A24F8116BB5E5F0029B775 /* Project object */;
+}
