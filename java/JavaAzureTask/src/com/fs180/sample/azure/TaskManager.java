@@ -48,28 +48,27 @@ public class TaskManager {
 	@SuppressWarnings("unchecked")
 	public static Iterable<TaskEntity> getTasks() throws InvalidKeyException, URISyntaxException
 	{
-		// Check to see if we are using the cache and if the cache is valid.
-		// If so, simply return the cache. 
-		boolean usingCache = Configuration.getCache();
+
 		ArrayList<TaskEntity> tasks = new ArrayList<TaskEntity>();
-		 
-		if ( usingCache && Cache.validCache == true ) {
+		
+		//If cache is enabled try to retrieve tasks from cache and update if necessary
+		if ( Configuration.getCacheEnabled()) {
 			tasks = (ArrayList<TaskEntity>) Cache.getTasks();
-			if ( tasks != null && ! tasks.isEmpty() ) {
-				// Needed because cache can't de-serialize rowKey field
-				for ( TaskEntity t : tasks ) 
-					t.setRowKey( t.getId() );
+			if ( tasks == null ) {
+				//No tasks in cache, retrieve from the repository and cache
+				ITaskRepository repo = TaskRepositoryFactory.GetRepository();
+				tasks = (ArrayList<TaskEntity>) repo.GetList();
+				
+				Cache.updateTasks(tasks);
 				return tasks;
 			}
-				 
+		}
+		else
+		{
+			ITaskRepository repo = TaskRepositoryFactory.GetRepository();
+			tasks = (ArrayList<TaskEntity>) repo.GetList();
 		}
 		
-		// Else, we need to get the list from the repository. 
-		// Update the cache afterwards.
-		ITaskRepository repo = TaskRepositoryFactory.GetRepository();
-		tasks = (ArrayList<TaskEntity>) repo.GetList();
-		Cache.updateTasks(tasks);
-		Cache.validateCache();
 		return tasks;
 	}
 	

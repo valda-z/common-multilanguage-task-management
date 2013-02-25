@@ -41,8 +41,11 @@ public class AzureTableTaskRepository implements ITaskRepository {
 		    .where(partitionFilter);
 
 		ArrayList<TaskEntity> tasks = new ArrayList<TaskEntity>();
-		for ( TaskEntity t : tableClient.execute(partitionQuery) ) 
+		for ( TaskEntity t : tableClient.execute(partitionQuery) )
+		{
+			t.setId(t.getRowKey());
 			tasks.add(t);
+		}
 		
 		return tasks;
 	}

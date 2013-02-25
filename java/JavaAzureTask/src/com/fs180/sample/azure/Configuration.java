@@ -1,6 +1,5 @@
 package com.fs180.sample.azure;
 
-import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -17,7 +16,7 @@ public class Configuration {
  	   final Properties prop = new Properties();
        
        try {
-    	   prop.load(new FileInputStream("config.properties"));
+    	   prop.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties"));
        } catch (Exception ex) {
     	   Logger.LogException(ex);
        }    
@@ -29,8 +28,6 @@ public class Configuration {
 		{
 				put("Provider", prop.getProperty("Provider"));
 				put("ConnectionString", prop.getProperty("ConnectionString"));
-				put("MySqlUsername", prop.getProperty("MySqlUsername"));
-				put("MySqlPassword", prop.getProperty("MySqlPassword"));
 				put("BlobConnectionString", prop.getProperty("BlobConnectionString"));
 				put("EntityImageLocation", prop.getProperty("EntityImageLocation"));
 				put("CacheEnabled", prop.getProperty("CacheEnabled"));
@@ -58,20 +55,12 @@ public class Configuration {
 		return config.get("BlobConnectionString");
 	}
 
-	public static boolean getCache() {
+	public static boolean getCacheEnabled() {
 		return Boolean.parseBoolean(config.get("CacheEnabled"));
 	}
 
 	public static String getCacheKeyName() {
 		return config.get("CacheKeyName");
-	}
-	
-	public static String getMySQLUsername() {
-		return config.get("MySqlUsername");
-	}
-	
-	public static String getMySQLPassword() {
-		return config.get("MySqlPassword");
 	}
 	
 	public static String getEntityImageLocation() {

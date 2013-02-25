@@ -82,9 +82,9 @@
                     <td><%=entity.getDate() %></td>
                     <td>
                     <%if (entity.getComplete()) { %>
-                        <a href="Task?complete=<%=entity.getRowKey()%>&val=false"><img src="images/checked.png" alt="complete" title="complete" /></a>
+                        <a href="Task?complete=<%=entity.getId()%>&val=false"><img src="images/checked.png" alt="complete" title="complete" /></a>
                     <%} else { %>
-                    	<a href="Task?complete=<%=entity.getRowKey()%>&val=true"><img src="images/unchecked.png" alt="incomplete" title="incomplete" /></a>
+                    	<a href="Task?complete=<%=entity.getId()%>&val=true"><img src="images/unchecked.png" alt="incomplete" title="incomplete" /></a>
                     <%} %>
                     </td>
                     <td class="align-center">
@@ -93,7 +93,7 @@
                     <%} %>
                     </td>
                     <td class="align-center">
-                    	<a href="Task?delete=<%=entity.getRowKey()%>"><img src="images/icon-delete.png" alt="delete" title="delete" /></a>
+                    	<a href="Task?delete=<%=entity.getId()%>"><img src="images/icon-delete.png" alt="delete" title="delete" /></a>
                     </td>
                 </tr>
               <%}%>

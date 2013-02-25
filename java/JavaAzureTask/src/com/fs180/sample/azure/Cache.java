@@ -10,7 +10,7 @@ import net.spy.memcached.MemcachedClient;
 
 public class Cache {
 
-		public static boolean validCache = false;
+		//public static boolean validCache = false;
 		private static String keyName;
 		private static MemcachedClient client = null;
 		private static ArrayList<InetSocketAddress> worker = null;
@@ -36,7 +36,10 @@ public class Cache {
 			return null;
 		}
 		
-		public static void invalidateCache(){ 
+		public static void invalidateCache() {
+			if (! Configuration.getCacheEnabled())
+				return;
+			
 			try {
 				if ( keyName == null ) 
 					keyName = Configuration.getCacheKeyName();
@@ -52,11 +55,6 @@ public class Cache {
 			} catch (IOException e) {
 				Logger.LogException(e);
 			}
-			validCache = false;
-		}
-		
-		public static void validateCache() {
-			validCache = true;
 		}
 		
 		public static void updateTasks( List<TaskEntity> list ) {

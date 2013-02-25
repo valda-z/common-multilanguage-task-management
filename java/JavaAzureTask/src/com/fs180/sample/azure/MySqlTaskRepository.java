@@ -18,8 +18,7 @@ public class MySqlTaskRepository implements ITaskRepository {
 
 		 ArrayList<TaskEntity> tasks = new ArrayList<TaskEntity>();
 			try {
-				String configString = Configuration.getConnectionString() + "?user=" + 
-							Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();
+				String configString = Configuration.getConnectionString();
 				Class.forName("com.mysql.jdbc.Driver");
 				java.sql.Connection conn = DriverManager.getConnection( configString );
 				Statement st = conn.createStatement();
@@ -29,7 +28,6 @@ public class MySqlTaskRepository implements ITaskRepository {
 				
 				while (result.next()) {
 					TaskEntity task = new TaskEntity();
-					task.setRowKey(result.getString("Id"));
 					task.setId(result.getString("Id"));
 					task.setName(result.getString("Name"));
 					task.setCategory(result.getString("Category"));
@@ -50,11 +48,9 @@ public class MySqlTaskRepository implements ITaskRepository {
 
      @Override
      public void Add(TaskEntity task) {
-    	 task.setRowKey( task.getId() );
 
  		try {
-			String configString = Configuration.getConnectionString() + "?user=" + 
-					Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();
+			String configString = Configuration.getConnectionString();
 			Class.forName("com.mysql.jdbc.Driver");
 			java.sql.Connection conn = DriverManager.getConnection( configString );
 			PreparedStatement ps = conn.prepareStatement(
@@ -80,8 +76,7 @@ public class MySqlTaskRepository implements ITaskRepository {
      @Override
      public void SetComplete(String taskId, boolean status) {
   		try {
-			String configString = Configuration.getConnectionString() + "?user=" + 
-					Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();
+			String configString = Configuration.getConnectionString();
 			Class.forName("com.mysql.jdbc.Driver");
 			java.sql.Connection conn = DriverManager.getConnection( configString );
  			Statement st = conn.createStatement();
@@ -101,8 +96,7 @@ public class MySqlTaskRepository implements ITaskRepository {
      @Override
      public void Delete(String taskId) {    	 
  		try {
-			String configString = Configuration.getConnectionString() + "?user=" + 
-					Configuration.getMySQLUsername() + "&password=" + Configuration.getMySQLPassword();
+			String configString = Configuration.getConnectionString();
 			Class.forName("com.mysql.jdbc.Driver");
 			java.sql.Connection conn = DriverManager.getConnection( configString );
 			Statement st = conn.createStatement();
