@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D814228D16CD7890004D3F1E /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D814228C16CD7890004D3F1E /* WindowsAzureMobileServices.framework */; };
 		D84C3D9016C39AD100C00E9F /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D84C3D8F16C39AD100C00E9F /* Checkmark.png */; };
 		D84C3D9316C39B6400C00E9F /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = D84C3D9216C39B6400C00E9F /* Task.m */; };
 		D84C3D9516C39F4100C00E9F /* Paperclip.png in Resources */ = {isa = PBXBuildFile; fileRef = D84C3D9416C39F4100C00E9F /* Paperclip.png */; };
+		D84D072C16D055E90033A10E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = D84D072A16D055E90033A10E /* NSData+Base64.m */; };
 		D8A24F8D16BB5E5F0029B775 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A24F8C16BB5E5F0029B775 /* UIKit.framework */; };
 		D8A24F8F16BB5E5F0029B775 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A24F8E16BB5E5F0029B775 /* Foundation.framework */; };
 		D8A24F9116BB5E5F0029B775 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A24F9016BB5E5F0029B775 /* CoreGraphics.framework */; };
@@ -22,13 +24,18 @@
 		D8A24FA616BB5E5F0029B775 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8A24FA416BB5E5F0029B775 /* MainStoryboard.storyboard */; };
 		D8A24FA916BB5E5F0029B775 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A24FA816BB5E5F0029B775 /* MasterViewController.m */; };
 		D8A24FAC16BB5E5F0029B775 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A24FAB16BB5E5F0029B775 /* DetailViewController.m */; };
+		D8D86E2516D01BAD00FA957E /* TaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D86E2416D01BAD00FA957E /* TaskService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D84C3D8F16C39AD100C00E9F /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
+		D814228A16CD7878004D3F1E /* WindowsAzureMobileServices */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = WindowsAzureMobileServices; path = ../../MobileServicesSDK/WindowsAzureMobileServices.framework/Versions/A/WindowsAzureMobileServices; sourceTree = "<group>"; };
+		D814228C16CD7890004D3F1E /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
+		D84C3D8F16C39AD100C00E9F /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = AzureNotes1/Checkmark.png; sourceTree = "<group>"; };
 		D84C3D9116C39B6400C00E9F /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		D84C3D9216C39B6400C00E9F /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
-		D84C3D9416C39F4100C00E9F /* Paperclip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Paperclip.png; sourceTree = "<group>"; };
+		D84C3D9416C39F4100C00E9F /* Paperclip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Paperclip.png; path = AzureNotes1/Paperclip.png; sourceTree = "<group>"; };
+		D84D072A16D055E90033A10E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		D84D072B16D055E90033A10E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		D8A24F8916BB5E5F0029B775 /* AzureTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AzureTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A24F8C16BB5E5F0029B775 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D8A24F8E16BB5E5F0029B775 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,6 +54,8 @@
 		D8A24FA816BB5E5F0029B775 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		D8A24FAA16BB5E5F0029B775 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		D8A24FAB16BB5E5F0029B775 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		D8D86E2316D01BAC00FA957E /* TaskService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskService.h; sourceTree = "<group>"; };
+		D8D86E2416D01BAD00FA957E /* TaskService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,17 +66,28 @@
 				D8A24F8D16BB5E5F0029B775 /* UIKit.framework in Frameworks */,
 				D8A24F8F16BB5E5F0029B775 /* Foundation.framework in Frameworks */,
 				D8A24F9116BB5E5F0029B775 /* CoreGraphics.framework in Frameworks */,
+				D814228D16CD7890004D3F1E /* WindowsAzureMobileServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D814228E16CD9771004D3F1E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D84C3D9416C39F4100C00E9F /* Paperclip.png */,
+				D84C3D8F16C39AD100C00E9F /* Checkmark.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		D8A24F8016BB5E5F0029B775 = {
 			isa = PBXGroup;
 			children = (
 				D8A24F9216BB5E5F0029B775 /* AzureNotes1 */,
 				D8A24F9316BB5E5F0029B775 /* Supporting Files */,
+				D814228E16CD9771004D3F1E /* Images */,
 				D8A24F8B16BB5E5F0029B775 /* Frameworks */,
 				D8A24F8A16BB5E5F0029B775 /* Products */,
 			);
@@ -84,6 +104,7 @@
 		D8A24F8B16BB5E5F0029B775 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D814228C16CD7890004D3F1E /* WindowsAzureMobileServices.framework */,
 				D8A24F8C16BB5E5F0029B775 /* UIKit.framework */,
 				D8A24F8E16BB5E5F0029B775 /* Foundation.framework */,
 				D8A24F9016BB5E5F0029B775 /* CoreGraphics.framework */,
@@ -94,8 +115,8 @@
 		D8A24F9216BB5E5F0029B775 /* AzureNotes1 */ = {
 			isa = PBXGroup;
 			children = (
-				D84C3D9416C39F4100C00E9F /* Paperclip.png */,
-				D84C3D8F16C39AD100C00E9F /* Checkmark.png */,
+				D84D072A16D055E90033A10E /* NSData+Base64.m */,
+				D84D072B16D055E90033A10E /* NSData+Base64.h */,
 				D8A24F9B16BB5E5F0029B775 /* AppDelegate.h */,
 				D8A24F9C16BB5E5F0029B775 /* AppDelegate.m */,
 				D8A24FA416BB5E5F0029B775 /* MainStoryboard.storyboard */,
@@ -105,6 +126,8 @@
 				D8A24FAB16BB5E5F0029B775 /* DetailViewController.m */,
 				D84C3D9116C39B6400C00E9F /* Task.h */,
 				D84C3D9216C39B6400C00E9F /* Task.m */,
+				D8D86E2316D01BAC00FA957E /* TaskService.h */,
+				D8D86E2416D01BAD00FA957E /* TaskService.m */,
 			);
 			path = AzureNotes1;
 			sourceTree = "<group>";
@@ -112,6 +135,7 @@
 		D8A24F9316BB5E5F0029B775 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D814228A16CD7878004D3F1E /* WindowsAzureMobileServices */,
 				D8A24F9416BB5E5F0029B775 /* AzureTask-Info.plist */,
 				D8A24F9516BB5E5F0029B775 /* InfoPlist.strings */,
 				D8A24F9816BB5E5F0029B775 /* main.m */,
@@ -197,6 +221,8 @@
 				D8A24FA916BB5E5F0029B775 /* MasterViewController.m in Sources */,
 				D8A24FAC16BB5E5F0029B775 /* DetailViewController.m in Sources */,
 				D84C3D9316C39B6400C00E9F /* Task.m in Sources */,
+				D8D86E2516D01BAD00FA957E /* TaskService.m in Sources */,
+				D84D072C16D055E90033A10E /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,9 +307,17 @@
 		D8A24FB016BB5E5F0029B775 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AzureNotes1/AzureTask-Prefix.pch";
 				INFOPLIST_FILE = "AzureNotes1/AzureTask-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../MobileServicesSDK/WindowsAzureMobileServices.framework/Versions/A\"",
+				);
 				PRODUCT_NAME = AzureTask;
 				WRAPPER_EXTENSION = app;
 			};
@@ -292,9 +326,17 @@
 		D8A24FB116BB5E5F0029B775 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AzureNotes1/AzureTask-Prefix.pch";
 				INFOPLIST_FILE = "AzureNotes1/AzureTask-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../MobileServicesSDK/WindowsAzureMobileServices.framework/Versions/A\"",
+				);
 				PRODUCT_NAME = AzureTask;
 				WRAPPER_EXTENSION = app;
 			};

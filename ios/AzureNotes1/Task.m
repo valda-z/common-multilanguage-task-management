@@ -17,6 +17,10 @@
 @synthesize category;
 @synthesize hasAttachment;
 @synthesize dueDate;
+@synthesize isComplete;
+@synthesize uniqueID;
+@synthesize idnum;
+@synthesize imageAsBase64;
 
 
 

@@ -10,7 +10,9 @@
 
 @interface MasterViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource>
+
 - (Task *) insertNewObject:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

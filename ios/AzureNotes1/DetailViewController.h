@@ -8,7 +8,8 @@
 #import <UIKit/UIKit.h>
 #import "Task.h"
 @interface DetailViewController : UIViewController
-<UITextFieldDelegate>
+<UITextFieldDelegate,
+UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) Task  *detailItem;
 @property (strong, nonatomic) id masterViewController;

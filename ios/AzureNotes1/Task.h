@@ -10,9 +10,13 @@
 
 @interface Task : NSObject
 
+@property (strong, nonatomic) NSString *uniqueID;
+@property (strong, nonatomic) NSString *idnum;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *category;
-@property (strong, nonatomic) NSDate *dueDate;
+@property (strong, nonatomic) NSDate   *dueDate;
 @property BOOL hasAttachment;
 @property BOOL isComplete;
+@property (strong, nonatomic) NSString *imageAsBase64;
+
 @end
