@@ -21,7 +21,7 @@
 @synthesize uniqueID;
 @synthesize idnum;
 @synthesize imageAsBase64;
-
+@synthesize imageURL;
 
 
 /////////////////////////////////////////////////////////////////////////////////

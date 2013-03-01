@@ -7,6 +7,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Task.h"
+#import "WABlobData.h"
+
+
 @interface DetailViewController : UIViewController
 <UITextFieldDelegate,
 UIImagePickerControllerDelegate>

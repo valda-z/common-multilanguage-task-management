@@ -37,10 +37,14 @@
 -(TaskService *) init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
+        NSString *clientAppUrlString = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AzureAppURL"];
+        NSString *clientAppKey = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AzureAppKey"];
+
         // Initialize the Mobile Service client with your URL and key
-        MSClient *newClient = [MSClient clientWithApplicationURLString:@"https://azuretask1.azure-mobile.net/"
-                                                    withApplicationKey:@"QKXDcCREVtxnyKYnhsOyawbqjyoJcz61"];
+        MSClient *newClient = [MSClient clientWithApplicationURLString:clientAppUrlString
+                                                    withApplicationKey:clientAppKey];
         
         // Add a Mobile Service filter to enable the busy indicator
         self.client = [newClient clientwithFilter:self];
@@ -77,6 +81,8 @@
         {
             Task *newTask = [[Task alloc] init];
 
+            newTask.imageURL = nil;
+            
             newTask.idnum = [d objectForKey:@"id"];
             newTask.name = [d objectForKey:@"Name"];
             newTask.category = [d objectForKey:@"Category"];
@@ -85,6 +91,10 @@
             newTask.uniqueID = [d objectForKey:@"UniqueID"];
             newTask.imageAsBase64 = [d objectForKey:@"ImageData"];
             newTask.hasAttachment = [[d objectForKey:@"HasAttachment"] isEqualToString:@"YES"] ? YES : NO;
+            
+            if (newTask.hasAttachment && (NSNull *)newTask.imageURL != [NSNull null])
+                newTask.imageURL = [d objectForKey:@"ImageURL"];
+            
             [tasks addObject:newTask];
         }
         
@@ -102,7 +112,8 @@
 -(void) addItem:(NSDictionary *)item completion:(CompletionWithStringBlock)completion
 {
     // Insert the item into the Item table and add to the items array on completion
-    [self.table insert:item completion:^(NSDictionary *result, NSError *error) {
+    [self.table insert:item completion:^(NSDictionary *result, NSError *error)
+    {
         
         [self logErrorIfNotNil:error];
         
@@ -113,6 +124,7 @@
         for (NSDictionary *d in items)
         {
             Task *newTask = [[Task alloc] init];
+            newTask.imageURL = nil;
             
             newTask.idnum = [d objectForKey:@"id"];
             newTask.name = [d objectForKey:@"Name"];
@@ -122,6 +134,7 @@
             newTask.uniqueID = [d objectForKey:@"UniqueID"];
             newTask.imageAsBase64 = [d objectForKey:@"ImageData"];
             newTask.hasAttachment = [[d objectForKey:@"HasAttachment"] isEqualToString:@"YES"] ? YES : NO;
+            newTask.imageURL = [d objectForKey:@"ImageURL"];
             [tasks addObject:newTask];
         }
         

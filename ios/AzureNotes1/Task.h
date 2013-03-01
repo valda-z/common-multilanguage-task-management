@@ -18,5 +18,6 @@
 @property BOOL hasAttachment;
 @property BOOL isComplete;
 @property (strong, nonatomic) NSString *imageAsBase64;
+@property (strong, nonatomic) NSString *imageURL;
 
 @end

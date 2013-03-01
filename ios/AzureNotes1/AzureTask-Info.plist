@@ -26,6 +26,10 @@
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
+	<key>AzureAppKey</key>
+	<string>&lt;App Key that corresponds to AzureAppURL&gt;</string>
+	<key>AzureAppURL</key>
+	<string>&lt;Azure Mobile Services app key&gt;</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -46,5 +50,31 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>ToolkitConfig</key>
+	<dict>
+		<key>CloudReadyACS</key>
+		<dict>
+			<key>ACSNamespace</key>
+			<string>{the namespace of the ACS service you are using}</string>
+			<key>ACSRealm</key>
+			<string>uri:wazmobiletoolkit</string>
+			<key>ProxyService</key>
+			<string>{the service name where the ACS Cloud Ready package is deployed}</string>
+		</dict>
+		<key>CloudReadySimple</key>
+		<dict>
+			<key>ProxyService</key>
+			<string>{the service name where the Membership Cloud Ready package is deployed}</string>
+		</dict>
+		<key>ConnectionType</key>
+		<string>Direct</string>
+		<key>Direct</key>
+		<dict>
+			<key>AccountName</key>
+			<string>&lt;Name of your azure blob storage area&gt;</string>
+			<key>DirectAccessKey</key>
+			<string>&lt;Key for your azure blob storage area&gt;</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

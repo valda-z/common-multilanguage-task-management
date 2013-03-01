@@ -9,6 +9,23 @@
 #import "DetailViewController.h"
 #import "MasterViewController.h"
 #import "NSData+Base64.h"
+
+#import "WABlobHandler.h"
+#import "WAConfiguration.h"
+
+
+//
+// This #define controls whether images (attachments) are
+//
+// Saved as base64 encode images in the Azure Mobile Services table (value == 0)
+//
+//   or
+//
+// Saved in Azure Blob Storage (takes longer, handles bigger data) (value == 1)
+//
+#define SAVE_IMAGES_TO_BLOB_STORAGE 1
+
+
 @interface DetailViewController ()
 - (void)configureView;
 @property (strong, nonatomic) IBOutlet UITextField *taskNameField;
@@ -23,6 +40,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (strong, nonatomic) IBOutlet UIImageView *chosenImage;
+@property (strong, nonatomic) WABlobData * blobObject;
+@property (strong, nonatomic) WAAuthenticationCredential *authenticationCredential;
+
+-(void)postToBlobStorage;
 
 @end
 
@@ -98,13 +119,20 @@ bool editingTaskDate = NO;
     
     if (self.detailItem.hasAttachment)
     {
+#if SAVE_IMAGES_TO_BLOB_STORAGE
+        if ((NSNull *)self.detailItem.imageURL != [NSNull null])
+        {
+            UIImage * image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.detailItem.imageURL]]];
+            self.chosenImage.image = image;
+        }
+#else
         if (self.detailItem.imageAsBase64 != (id)[NSNull null])
         {
             NSData *data = [NSData dataFromBase64String:self.detailItem.imageAsBase64];
             UIImage *image = [UIImage imageWithData:data];
             self.chosenImage.image = image;
         }
-
+#endif
     }
 }
 
@@ -143,6 +171,22 @@ bool editingTaskDate = NO;
 /////////////////////////////////////////////////////////////////////////////////
 - (IBAction)saveDataToAzure:(id)sender
 {
+
+#if SAVE_IMAGES_TO_BLOB_STORAGE
+    if (self.blobObject.image != nil)
+    {
+        LOG(@"posting to Blob storage");
+        [self postToBlobStorage];
+    }
+    else
+#endif
+        
+        [self saveDataAfterBlobUpload:nil];
+    
+}
+
+- (void) saveDataAfterBlobUpload:(NSString *)blobAddress
+{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *taskAsItem = [[NSMutableDictionary alloc] init];
     
@@ -153,6 +197,11 @@ bool editingTaskDate = NO;
     [taskAsItem setValue:[self.detailItem uniqueID] forKey:@"UniqueID"];
     [taskAsItem setValue:[self.detailItem idnum] forKey:@"id"];
     [taskAsItem setValue:[self.detailItem hasAttachment] ? @"YES" : @"NO" forKey:@"HasAttachment"];
+
+#if SAVE_IMAGES_TO_BLOB_STORAGE
+    if (blobAddress != nil)
+        [taskAsItem setValue:blobAddress forKey:@"ImageURL"];
+#endif
     
     //
     // Is this a CREATE (add)?
@@ -161,7 +210,8 @@ bool editingTaskDate = NO;
     {
         self.detailItem.uniqueID = [[NSProcessInfo processInfo] globallyUniqueString];
         [taskAsItem setValue:[self.detailItem uniqueID] forKey:@"UniqueID"];
-        
+
+#if !SAVE_IMAGES_TO_BLOB_STORAGE
         if (self.detailItem.hasAttachment)
         {
             //
@@ -179,6 +229,8 @@ bool editingTaskDate = NO;
             }
 
         }
+#endif
+        
         [[appDelegate taskService] addItem:taskAsItem completion:^(NSString *value)
         {
             self.detailItem.idnum = value;
@@ -333,6 +385,35 @@ bool editingTaskDate = NO;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+
+    if (self.blobObject == nil)
+    {
+        self.blobObject =[[WABlobData alloc] init];
+        
+        //
+        // TODO: Change this if you want
+        //
+        // This container is created under the Azure Storage 'Direct' account/key you setup
+        // in the .plist file
+        //
+        self.blobObject.containerName = @"AzureTaskBlobContainer";
+        self.blobObject.makeContainerPublic = YES;
+        self.blobObject.blobName = [[NSProcessInfo processInfo] globallyUniqueString];
+    }
+    
+    if (self.authenticationCredential == nil)
+    {
+        
+        WAConfiguration *config =[WAConfiguration sharedConfiguration];
+        
+        WAAuthenticationCredential *authenticationCredential =
+        [WAAuthenticationCredential credentialWithAzureServiceAccount:config.accountName
+                                                            accessKey:config.accessKey];
+        
+        
+        self.authenticationCredential = authenticationCredential;
+    }
+    
     [self configureView];
 }
 
@@ -370,7 +451,47 @@ bool editingTaskDate = NO;
 {
     self.chosenImage.image = image;
     self.detailItem.hasAttachment = YES;
+    self.blobObject.image = image;
     [picker dismissModalViewControllerAnimated:YES];
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+// When SAVE_IMAGES_TO_BLOB_STORAGE is set to 1, this method is called to
+// upload the images to blob storage and get the resulting URL to add to the
+// task for attachments.
+//
+// Note: This takes a considerably longer amount of time (to upload) but doesn't have
+// the size limits of a column-encoded-as-base64 alternative
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+-(void)postToBlobStorage
+{
+    WABlobHandler *blobHandler =[[WABlobHandler alloc] init];
+    [blobHandler postImageToBlob:self.blobObject
+    withAuthenticationCredential:self.authenticationCredential
+          usingCompletionHandler: ^ (NSError * error)
+               {
+                   if (error != nil)
+                   {
+                       UIAlertView *alert =
+                       [[UIAlertView alloc] initWithTitle:@"Azure Blob Storage Error"
+                                                  message:error.localizedDescription
+                                                 delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+                       [alert show];
+
+                       return;
+                   }
+                   else
+                   {
+                       NSLog(@"Blob uploaded to Azure, URL is: %@",[self.blobObject.shortUrl absoluteString] );
+                       [self saveDataAfterBlobUpload:[self.blobObject.shortUrl absoluteString]];
+                   }
+               }];    
+
 }
 
 @end
