@@ -12,6 +12,18 @@
 		D84C3D9316C39B6400C00E9F /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = D84C3D9216C39B6400C00E9F /* Task.m */; };
 		D84C3D9516C39F4100C00E9F /* Paperclip.png in Resources */ = {isa = PBXBuildFile; fileRef = D84C3D9416C39F4100C00E9F /* Paperclip.png */; };
 		D84D072C16D055E90033A10E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = D84D072A16D055E90033A10E /* NSData+Base64.m */; };
+		D87B22A116DFF2710092CFD7 /* WAAcsRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D87B229616DFF2710092CFD7 /* WAAcsRegisterViewController.m */; };
+		D87B22A216DFF2710092CFD7 /* WAConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = D87B229816DFF2710092CFD7 /* WAConfiguration.m */; };
+		D87B22A316DFF2710092CFD7 /* WALoginHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D87B229A16DFF2710092CFD7 /* WALoginHandler.m */; };
+		D87B22A416DFF2710092CFD7 /* WALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D87B229C16DFF2710092CFD7 /* WALoginViewController.m */; };
+		D87B22A516DFF2710092CFD7 /* WARegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D87B229E16DFF2710092CFD7 /* WARegisterViewController.m */; };
+		D87B22A616DFF2710092CFD7 /* WAServiceCall.m in Sources */ = {isa = PBXBuildFile; fileRef = D87B22A016DFF2710092CFD7 /* WAServiceCall.m */; };
+		D87B22A816DFF2C50092CFD7 /* libwatoolkitios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D87B22A716DFF2C50092CFD7 /* libwatoolkitios.a */; };
+		D87B22AF16DFF7400092CFD7 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D87B22A916DFF5DC0092CFD7 /* libxml2.2.dylib */; };
+		D87B22B116DFF9630092CFD7 /* UIApplication+WANetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D87B22AC16DFF5FB0092CFD7 /* UIApplication+WANetworkActivity.m */; };
+		D87B22B316DFFC200092CFD7 /* WABlobData.m in Sources */ = {isa = PBXBuildFile; fileRef = D87B228F16DFF25F0092CFD7 /* WABlobData.m */; };
+		D87B22B516DFFC200092CFD7 /* WABlobHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D87B228E16DFF25F0092CFD7 /* WABlobHandler.m */; };
+		D87B22B916E001040092CFD7 /* WASimpleBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D87B22B816E001040092CFD7 /* WASimpleBase64.m */; };
 		D8A24F8D16BB5E5F0029B775 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A24F8C16BB5E5F0029B775 /* UIKit.framework */; };
 		D8A24F8F16BB5E5F0029B775 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A24F8E16BB5E5F0029B775 /* Foundation.framework */; };
 		D8A24F9116BB5E5F0029B775 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A24F9016BB5E5F0029B775 /* CoreGraphics.framework */; };
@@ -36,6 +48,30 @@
 		D84C3D9416C39F4100C00E9F /* Paperclip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Paperclip.png; path = AzureNotes1/Paperclip.png; sourceTree = "<group>"; };
 		D84D072A16D055E90033A10E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		D84D072B16D055E90033A10E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		D87B228E16DFF25F0092CFD7 /* WABlobHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WABlobHandler.m; sourceTree = "<group>"; };
+		D87B228F16DFF25F0092CFD7 /* WABlobData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WABlobData.m; sourceTree = "<group>"; };
+		D87B229016DFF25F0092CFD7 /* WABlobHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WABlobHandler.h; sourceTree = "<group>"; };
+		D87B229116DFF25F0092CFD7 /* WABlobData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WABlobData.h; sourceTree = "<group>"; };
+		D87B229216DFF25F0092CFD7 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		D87B229416DFF2710092CFD7 /* BlockTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockTypes.h; sourceTree = "<group>"; };
+		D87B229516DFF2710092CFD7 /* WAAcsRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAcsRegisterViewController.h; sourceTree = "<group>"; };
+		D87B229616DFF2710092CFD7 /* WAAcsRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAcsRegisterViewController.m; sourceTree = "<group>"; };
+		D87B229716DFF2710092CFD7 /* WAConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAConfiguration.h; sourceTree = "<group>"; };
+		D87B229816DFF2710092CFD7 /* WAConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAConfiguration.m; sourceTree = "<group>"; };
+		D87B229916DFF2710092CFD7 /* WALoginHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALoginHandler.h; sourceTree = "<group>"; };
+		D87B229A16DFF2710092CFD7 /* WALoginHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WALoginHandler.m; sourceTree = "<group>"; };
+		D87B229B16DFF2710092CFD7 /* WALoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALoginViewController.h; sourceTree = "<group>"; };
+		D87B229C16DFF2710092CFD7 /* WALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WALoginViewController.m; sourceTree = "<group>"; };
+		D87B229D16DFF2710092CFD7 /* WARegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WARegisterViewController.h; sourceTree = "<group>"; };
+		D87B229E16DFF2710092CFD7 /* WARegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WARegisterViewController.m; sourceTree = "<group>"; };
+		D87B229F16DFF2710092CFD7 /* WAServiceCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAServiceCall.h; sourceTree = "<group>"; };
+		D87B22A016DFF2710092CFD7 /* WAServiceCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAServiceCall.m; sourceTree = "<group>"; };
+		D87B22A716DFF2C50092CFD7 /* libwatoolkitios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwatoolkitios.a; path = AzureNotes1/libwatoolkitios.a; sourceTree = "<group>"; };
+		D87B22A916DFF5DC0092CFD7 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		D87B22AB16DFF5FB0092CFD7 /* UIApplication+WANetworkActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+WANetworkActivity.h"; sourceTree = "<group>"; };
+		D87B22AC16DFF5FB0092CFD7 /* UIApplication+WANetworkActivity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+WANetworkActivity.m"; sourceTree = "<group>"; };
+		D87B22B716E001040092CFD7 /* WASimpleBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASimpleBase64.h; sourceTree = "<group>"; };
+		D87B22B816E001040092CFD7 /* WASimpleBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASimpleBase64.m; sourceTree = "<group>"; };
 		D8A24F8916BB5E5F0029B775 /* AzureTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AzureTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A24F8C16BB5E5F0029B775 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D8A24F8E16BB5E5F0029B775 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D87B22AF16DFF7400092CFD7 /* libxml2.2.dylib in Frameworks */,
+				D87B22A816DFF2C50092CFD7 /* libwatoolkitios.a in Frameworks */,
 				D8A24F8D16BB5E5F0029B775 /* UIKit.framework in Frameworks */,
 				D8A24F8F16BB5E5F0029B775 /* Foundation.framework in Frameworks */,
 				D8A24F9116BB5E5F0029B775 /* CoreGraphics.framework in Frameworks */,
@@ -82,9 +120,39 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		D87B229316DFF2710092CFD7 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				D87B229416DFF2710092CFD7 /* BlockTypes.h */,
+				D87B229516DFF2710092CFD7 /* WAAcsRegisterViewController.h */,
+				D87B229616DFF2710092CFD7 /* WAAcsRegisterViewController.m */,
+				D87B229716DFF2710092CFD7 /* WAConfiguration.h */,
+				D87B229816DFF2710092CFD7 /* WAConfiguration.m */,
+				D87B229916DFF2710092CFD7 /* WALoginHandler.h */,
+				D87B229A16DFF2710092CFD7 /* WALoginHandler.m */,
+				D87B229B16DFF2710092CFD7 /* WALoginViewController.h */,
+				D87B229C16DFF2710092CFD7 /* WALoginViewController.m */,
+				D87B229D16DFF2710092CFD7 /* WARegisterViewController.h */,
+				D87B229E16DFF2710092CFD7 /* WARegisterViewController.m */,
+				D87B229F16DFF2710092CFD7 /* WAServiceCall.h */,
+				D87B22A016DFF2710092CFD7 /* WAServiceCall.m */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		D87B22B616E001040092CFD7 /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				D87B22B716E001040092CFD7 /* WASimpleBase64.h */,
+				D87B22B816E001040092CFD7 /* WASimpleBase64.m */,
+			);
+			path = Base64;
+			sourceTree = "<group>";
+		};
 		D8A24F8016BB5E5F0029B775 = {
 			isa = PBXGroup;
 			children = (
+				D87B22B616E001040092CFD7 /* Base64 */,
 				D8A24F9216BB5E5F0029B775 /* AzureNotes1 */,
 				D8A24F9316BB5E5F0029B775 /* Supporting Files */,
 				D814228E16CD9771004D3F1E /* Images */,
@@ -104,6 +172,8 @@
 		D8A24F8B16BB5E5F0029B775 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D87B22A916DFF5DC0092CFD7 /* libxml2.2.dylib */,
+				D87B22A716DFF2C50092CFD7 /* libwatoolkitios.a */,
 				D814228C16CD7890004D3F1E /* WindowsAzureMobileServices.framework */,
 				D8A24F8C16BB5E5F0029B775 /* UIKit.framework */,
 				D8A24F8E16BB5E5F0029B775 /* Foundation.framework */,
@@ -115,19 +185,27 @@
 		D8A24F9216BB5E5F0029B775 /* AzureNotes1 */ = {
 			isa = PBXGroup;
 			children = (
-				D84D072A16D055E90033A10E /* NSData+Base64.m */,
-				D84D072B16D055E90033A10E /* NSData+Base64.h */,
 				D8A24F9B16BB5E5F0029B775 /* AppDelegate.h */,
 				D8A24F9C16BB5E5F0029B775 /* AppDelegate.m */,
+				D87B229316DFF2710092CFD7 /* Configuration */,
+				D8A24FAA16BB5E5F0029B775 /* DetailViewController.h */,
+				D8A24FAB16BB5E5F0029B775 /* DetailViewController.m */,
+				D87B229216DFF25F0092CFD7 /* Macros.h */,
 				D8A24FA416BB5E5F0029B775 /* MainStoryboard.storyboard */,
 				D8A24FA716BB5E5F0029B775 /* MasterViewController.h */,
 				D8A24FA816BB5E5F0029B775 /* MasterViewController.m */,
-				D8A24FAA16BB5E5F0029B775 /* DetailViewController.h */,
-				D8A24FAB16BB5E5F0029B775 /* DetailViewController.m */,
+				D84D072B16D055E90033A10E /* NSData+Base64.h */,
+				D84D072A16D055E90033A10E /* NSData+Base64.m */,
 				D84C3D9116C39B6400C00E9F /* Task.h */,
 				D84C3D9216C39B6400C00E9F /* Task.m */,
 				D8D86E2316D01BAC00FA957E /* TaskService.h */,
 				D8D86E2416D01BAD00FA957E /* TaskService.m */,
+				D87B22AB16DFF5FB0092CFD7 /* UIApplication+WANetworkActivity.h */,
+				D87B22AC16DFF5FB0092CFD7 /* UIApplication+WANetworkActivity.m */,
+				D87B229116DFF25F0092CFD7 /* WABlobData.h */,
+				D87B228F16DFF25F0092CFD7 /* WABlobData.m */,
+				D87B229016DFF25F0092CFD7 /* WABlobHandler.h */,
+				D87B228E16DFF25F0092CFD7 /* WABlobHandler.m */,
 			);
 			path = AzureNotes1;
 			sourceTree = "<group>";
@@ -216,6 +294,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D87B22B316DFFC200092CFD7 /* WABlobData.m in Sources */,
+				D87B22B516DFFC200092CFD7 /* WABlobHandler.m in Sources */,
+				D87B22B116DFF9630092CFD7 /* UIApplication+WANetworkActivity.m in Sources */,
 				D8A24F9916BB5E5F0029B775 /* main.m in Sources */,
 				D8A24F9D16BB5E5F0029B775 /* AppDelegate.m in Sources */,
 				D8A24FA916BB5E5F0029B775 /* MasterViewController.m in Sources */,
@@ -223,6 +304,13 @@
 				D84C3D9316C39B6400C00E9F /* Task.m in Sources */,
 				D8D86E2516D01BAD00FA957E /* TaskService.m in Sources */,
 				D84D072C16D055E90033A10E /* NSData+Base64.m in Sources */,
+				D87B22A116DFF2710092CFD7 /* WAAcsRegisterViewController.m in Sources */,
+				D87B22A216DFF2710092CFD7 /* WAConfiguration.m in Sources */,
+				D87B22A316DFF2710092CFD7 /* WALoginHandler.m in Sources */,
+				D87B22A416DFF2710092CFD7 /* WALoginViewController.m in Sources */,
+				D87B22A516DFF2710092CFD7 /* WARegisterViewController.m in Sources */,
+				D87B22A616DFF2710092CFD7 /* WAServiceCall.m in Sources */,
+				D87B22B916E001040092CFD7 /* WASimpleBase64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,10 +401,15 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AzureNotes1/AzureTask-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"build/Debug-iphoneos/**",
+					"/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "AzureNotes1/AzureTask-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../MobileServicesSDK/WindowsAzureMobileServices.framework/Versions/A\"",
+					"\"$(SRCROOT)/AzureNotes1\"",
 				);
 				PRODUCT_NAME = AzureTask;
 				WRAPPER_EXTENSION = app;
@@ -332,10 +425,15 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AzureNotes1/AzureTask-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"build/Debug-iphoneos/**",
+					"/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "AzureNotes1/AzureTask-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../MobileServicesSDK/WindowsAzureMobileServices.framework/Versions/A\"",
+					"\"$(SRCROOT)/AzureNotes1\"",
 				);
 				PRODUCT_NAME = AzureTask;
 				WRAPPER_EXTENSION = app;
